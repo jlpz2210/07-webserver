@@ -51,10 +51,10 @@ const usersPut = async (req = request,res = response)=>{
 const usersDelete = async (req,res = response)=>{
 
     const {id} = req.params;
-    
+    const authenticatedUser = req.user;
     const user = await User.findByIdAndUpdate(id, {isActive:false});
     
-    res.json(user);
+    res.json({user, authenticatedUser});
 }
 
 module.exports = {
